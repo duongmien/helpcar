@@ -24,3 +24,5 @@ Route::resource('role', 'RoleController');
 Route::resource('user', 'UserController');
 // Home
 Route::get('/', 'HomeController@index');
+//  User
+Route::resource('csch', 'ResFacilityController');

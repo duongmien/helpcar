@@ -18,4 +18,8 @@ class SubDistrict extends Model
     {
         return $this->hasMany('App\User', null, 'id');
     }
+    public function ResFacility()
+    {
+        return $this->hasMany('App\ResFacility', null, 'id');
+    }
 }

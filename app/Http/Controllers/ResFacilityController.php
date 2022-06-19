@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ResFacility;
 use App\Role;
 use App\SubDistrict;
 use App\User;
@@ -10,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
-class UserController extends Controller
+class ResFacilityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +20,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data_all_user = User::with('role', 'subdistrict')->get();
-        $manager_user = view('admin.user.list')->with('data_all_user', $data_all_user);
-        return view('adminlayout')->with('admin.user.list', $manager_user);
+        $data_all_csch = ResFacility::with('role', 'subdistrict')->get();
+        $manager_csch = view('admin.csch.list')->with('data_all_csch', $data_all_csch);
+        return view('adminlayout')->with('admin.csch.list', $manager_csch);
     }
 
     /**
@@ -32,9 +33,9 @@ class UserController extends Controller
     public function create()
     {
         $data_sub_dis = SubDistrict::orderBy('id', 'desc')->get();
-        $data_role = Role::where('id', 1)->orWhere('id', 3)->orderBy('id', 'desc')->get();
-        $manager_user = view('admin.user.add')->with('data_sub_dis', $data_sub_dis)->with('data_role', $data_role);
-        return view('adminlayout')->with('admin.user.add', $manager_user);
+        $data_role = Role::where('id', 3)->orderBy('id', 'desc')->get();
+        $manager_csch = view('admin.csch.add')->with('data_sub_dis', $data_sub_dis)->with('data_role', $data_role);
+        return view('adminlayout')->with('admin.csch.add', $manager_csch);
     }
 
     /**
@@ -45,21 +46,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = new User();
-        $user->name =  $request->name;
-        $user->DoB =  $request->DoB;
-        $user->sex =  $request->sex;
-        $user->phone =  $request->phone;
-        $user->email =  $request->email;
-        $user->CMND =  $request->cmnd;
-        $user->password = Hash::make($request->password);
-        $user->diachi = $request->address;
-        $user->idPX = $request->idPX;
-        $user->idrole = $request->idrole;
-        $user->save();
+        $csch = new ResFacility();
+        $csch->name =  $request->name;
+        $csch->DoB =  $request->DoB;
+        $csch->sex =  $request->sex;
+        $csch->phone =  $request->phone;
+        $csch->email =  $request->email;
+        $csch->CMND =  $request->cmnd;
+        $csch->password = Hash::make($request->password);
+        $csch->diachi = $request->address;
+        $csch->idPX = $request->idPX;
+        $csch->idrole = $request->idrole;
+        $csch->save();
         // Thông qua 1 thể hiện của Request
         $request->session()->put('message', 'Add successful');
-        return Redirect::to('/user');
+        return Redirect::to('/csch');
     }
 
     /**
@@ -82,9 +83,9 @@ class UserController extends Controller
     {
         $data_sub_dis = SubDistrict::orderBy('id', 'desc')->get();
         $data_role = Role::where('id', 1)->orWhere('id', 3)->orderBy('id', 'desc')->get();
-        $data_user = User::findOrFail($id);
-        $manager_user = view('admin.user.edit')->with('data_sub_dis', $data_sub_dis)->with('data_user', $data_user)->with('data_role', $data_role);
-        return view('adminlayout')->with('admin.user.edit', $manager_user);
+        $data_csch = ResFacility::findOrFail($id);
+        $manager_csch = view('admin.csch.edit')->with('data_sub_dis', $data_sub_dis)->with('data_csch', $data_csch)->with('data_role', $data_role);
+        return view('adminlayout')->with('admin.csch.edit', $manager_csch);
     }
 
     /**
@@ -96,20 +97,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->name =  $request->name;
-        $user->DoB =  $request->DoB;
-        $user->sex =  $request->sex;
-        $user->phone =  $request->phone;
-        $user->email =  $request->email;
-        $user->CMND =  $request->cmnd;
-        $user->password = Hash::make($request->password);
-        $user->diachi = $request->address;
-        $user->idPX = $request->idPX; 
-        $user->idrole = $request->idrole;
-        $user->save();
+        $csch = ResFacility::findOrFail($id);
+        $csch->name =  $request->name;
+        $csch->DoB =  $request->DoB;
+        $csch->sex =  $request->sex;
+        $csch->phone =  $request->phone;
+        $csch->email =  $request->email;
+        $csch->CMND =  $request->cmnd;
+        $csch->password = Hash::make($request->password);
+        $csch->diachi = $request->address;
+        $csch->idPX = $request->idPX;
+        $csch->idrole = $request->idrole;
+        $csch->save();
         $request->session()->put('message', 'Upadate successful');
-        return Redirect::to('/user');
+        return Redirect::to('/csch');
     }
 
     /**
@@ -120,9 +121,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        $csch = ResFacility::findOrFail($id);
+        $csch->delete();
         Session::put('message', 'Delete successful');
-        return Redirect::to('/user');
+        return Redirect::to('/csch');
     }
 }

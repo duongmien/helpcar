@@ -92,7 +92,7 @@ class DistrictController extends Controller
         $district->name =  $request->name;
         $district->city_id = $request->city_id;
         $district->save();
-        $request->session()->put('message', 'Upadate successful all');
+        $request->session()->put('message', 'Upadate successful');
         return Redirect::to('/district');
     }
 

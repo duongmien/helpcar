@@ -1,0 +1,46 @@
+body {
+  background-image: url('./assets/img/login-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.wraprer {
+  width: 60%;
+  margin-top: 20%;
+}
+.action button {
+  width: 180px;
+}
+
+.text-orange {
+  color: #F95C19;
+}
+
+.button-orange {
+  border: 1px solid #F95C19;
+  color: #F95C19;
+  background-color: #FFE4D9;
+  font-weight: bold;
+}
+
+.button-orange:hover {
+  border: 1px solid #FFE4D9;
+  color: #FFE4D9;
+  background-color: #F95C19;
+}
+
+.button-orange-reverse {
+  border: 1px solid #FFE4D9;
+  color: #FFE4D9;
+  background-color: #F95C19;
+  font-weight: bold;
+}
+
+.button-orange-reverse:hover {
+  border: 1px solid #F95C19;
+  color: #F95C19;
+  background-color: #FFE4D9;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

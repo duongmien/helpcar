@@ -62,6 +62,11 @@
                     <span>Quản lý Người Dùng</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{('/csch')}}">
+                    <i class="fas fa-fw fa-guitar"></i>
+                    <span>Quản lý Cơ sở cứu hộ</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{('/city')}}">
                     <i class="fas fa-fw fa-guitar"></i>
                     <span>Quản lý Thành Phố</span></a>
