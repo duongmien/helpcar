@@ -72,6 +72,11 @@
                     <span>Quản lý Danh Mục</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{('/itemcate')}}">
+                    <i class="fas fa-fw fa-gavel"></i>
+                    <span>Quản lý Dịch Vụ</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{('/city')}}">
                     <i class="fas fa-fw fa-map"></i>
                     <span>Quản lý Thành Phố</span></a>

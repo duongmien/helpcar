@@ -10,4 +10,8 @@ class Categories extends Model
     protected $fillable = ['name'];
     protected $primaryKey = 'id';
     protected $table = 'tbldanhmucdv';
+    public function ItemCate()
+    {
+        return $this->hasMany('App\ItemCate', null, 'id');
+    }
 }

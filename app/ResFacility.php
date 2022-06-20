@@ -26,4 +26,8 @@ class ResFacility extends Model
     {
         return $this->hasMany('App\ImageForCSCH', null, 'id');
     }
+    public function ItemCate()
+    {
+        return $this->hasMany('App\ItemCate', null, 'id');
+    }
 }

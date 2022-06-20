@@ -30,6 +30,8 @@ Route::get('/home', 'HomeController@home');
 Route::resource('csch', 'ResFacilityController');
 //  Category
 Route::resource('category', 'CategoryController');
+//  Item Category
+Route::resource('itemcate', 'ItemCateController');
 // Login
 Route::get('/login', 'LoginController@index');
 Route::post('/check-login', 'LoginController@check_login');

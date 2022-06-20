@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
+use App\ItemCate;
+use App\ResFacility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ItemCateController extends Controller
 {
@@ -11,9 +16,26 @@ class ItemCateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        //
+        $this->AuthLogin();
+        $data_all_itemcate = ItemCate::with('categories', 'ResFacility')->get();
+        $manager_itemcate = view('admin.itemcate.list')->with('data_all_itemcate', $data_all_itemcate);
+        return view('adminlayout')->with('admin.itemcate.list', $manager_itemcate);
     }
 
     /**
@@ -23,7 +45,11 @@ class ItemCateController extends Controller
      */
     public function create()
     {
-        //
+        $this->AuthLogin();
+        $data_cat = Categories::orderBy('id', 'desc')->get();
+        $data_csch = ResFacility::orderBy('id', 'desc')->get();
+        $manager_all = view('admin.itemcate.add')->with('data_cat', $data_cat)->with('data_csch', $data_csch);
+        return view('adminlayout')->with('admin.itemcate.add', $manager_all);
     }
 
     /**
