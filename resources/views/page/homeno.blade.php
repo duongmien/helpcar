@@ -66,13 +66,13 @@
         </div>
       </div>
       <div class="col-5">
-        <img src="./assets/img/home-img.png" alt="">
+        <img style="margin-top: 30px; margin-bottom:80px" src="./assets/img/help-car.webp" alt="">
       </div>
     </div>
     <div class="row">
       <div class="col d-flex">
         <img src="./assets/img/man.png" alt="">
-        <div>
+        <div style="margin-top: 10px">
           <h4 class="text-orange">TRUNG TÂM CỨU HỘ XE ĐÀ NẴNG</h4>
           <h4 class="text-orange">HELP CAR CENTER DANANG </h4>
           <p>Trang web hỗ trợ việc cứu hộ trên địa bàn thành phố đà nẵng Đà Nẵng.</p>
