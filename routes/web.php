@@ -20,7 +20,7 @@ Route::resource('district', 'DistrictController');
 Route::resource('sub-district', 'SubDistrictController');
 //  Role
 Route::resource('role', 'RoleController');
-//  User
+//  Category
 Route::resource('user', 'UserController');
 // Home No Login
 Route::get('/', 'HomeController@index');
@@ -28,6 +28,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@home');
 //  User
 Route::resource('csch', 'ResFacilityController');
+//  Category
+Route::resource('category', 'CategoryController');
 // Login
 Route::get('/login', 'LoginController@index');
 Route::post('/check-login', 'LoginController@check_login');

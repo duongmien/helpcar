@@ -67,6 +67,11 @@
                     <span>Quản lý Cơ sở cứu hộ</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{('/category')}}">
+                    <i class="fas fa-fw fa-gavel"></i>
+                    <span>Quản lý Danh Mục</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{('/city')}}">
                     <i class="fas fa-fw fa-map"></i>
                     <span>Quản lý Thành Phố</span></a>
