@@ -73,8 +73,16 @@
             </form>
           </li>
           <li class="nav-item">
-            <div class="avatar">
-              <img src="./assets/img/avatar.png" alt="">
+            <div class="dropdown">
+              <a href="#" id="imageDropdown" data-toggle="dropdown">
+                <div class="avatar">
+                  <img src="./assets/img/avatar.png" alt="">
+                </div>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="imageDropdown">
+                <button class="dropdown-item" type="button">Thông tin</button>
+                <button class="dropdown-item" type="button">Đăng xuất</button>
+              </div>
             </div>
           </li>
         </ul>

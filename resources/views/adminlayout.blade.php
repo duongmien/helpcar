@@ -58,32 +58,32 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{('/user')}}">
-                    <i class="fas fa-fw fa-guitar"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Quản lý Người Dùng</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{('/csch')}}">
-                    <i class="fas fa-fw fa-guitar"></i>
+                    <i class="fas fa-fw fa-car"></i>
                     <span>Quản lý Cơ sở cứu hộ</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{('/city')}}">
-                    <i class="fas fa-fw fa-guitar"></i>
+                    <i class="fas fa-fw fa-map"></i>
                     <span>Quản lý Thành Phố</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{('/district')}}">
-                    <i class="fas fa-fw fa-guitar"></i>
+                    <i class="fas fa-fw fa-industry"></i>
                     <span>Quản lý Quận Huyện</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{('/sub-district')}}">
-                    <i class="fas fa-fw fa-guitar"></i>
+                    <i class="fas fa-fw fa-certificate"></i>
                     <span>Quản lý Phường Xã</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{('/role')}}">
-                    <i class="fas fa-fw fa-guitar"></i>
+                    <i class="fas fa-fw fa-gavel"></i>
                     <span>Quản lý Quyền</span></a>
             </li>
             <!-- Sidebar Toggler (Sidebar) -->

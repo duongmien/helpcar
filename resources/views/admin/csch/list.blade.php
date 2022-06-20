@@ -21,10 +21,9 @@ if ($message) {
       <th scope="col">ID</th>
       <th scope="col">Tên CSCH</th>
       <th scope="col">Ngày ĐKKD</th>
-      <th scope="col">MSKD</th>
+      <th scope="col">Mã số thuế</th>
       <th scope="col">SĐT</th>
       <th scope="col">Email</th>
-      <th scope="col">Địa chỉ</th>
       <th scope="col">Phường xã</th>
       <th>#</th>
     </tr>
@@ -37,10 +36,9 @@ if ($message) {
       <td>{{$row->id}}</td>
       <td>{{$row->name}}</td>
       <td>{{$row->ngaydkkd}}</td>
-      <td>{{$row->tax__code}}</td>
+      <td>{{$row->tax_code}}</td>
       <td>{{$row->phone}}</td>
       <td>{{$row->email}}</td>
-      <td>{{$row->diachi}}</td>
       <td>{{$row->subdistrict->name}}</td>
       <td>
         <a href="{{route('csch.show',$row->id)}}" type="button" class="btn btn-success">Xem</a>

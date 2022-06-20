@@ -16,6 +16,14 @@ class ResFacility extends Model
     }
     public function SubDistrict()
     {
-        return $this->belongsTo('App\SubDistrict', 'idX', 'id');
+        return $this->belongsTo('App\SubDistrict', 'idPX', 'id');
+    }
+    public function ImageForGPKD()
+    {
+        return $this->hasMany('App\ImageForGPKD', null, 'id');
+    }
+    public function ImageForCSCH()
+    {
+        return $this->hasMany('App\ImageForCSCH', null, 'id');
     }
 }

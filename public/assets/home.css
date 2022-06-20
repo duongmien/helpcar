@@ -73,3 +73,7 @@ footer .bulldozer::after{
   border-radius: 50%;
   overflow: hidden;
 }
+
+.dropdown-menu {
+  margin-left: -30px;
+}

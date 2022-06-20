@@ -13,23 +13,19 @@ if ($message) {
 ?>
 <hr>
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-    <form action="{{route('user.store')}}" method="POST" role="form" enctype="multipart/form-data">
+    <form action="{{route('csch.store')}}" method="POST" role="form" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="">Họ Tên</label>
+            <label for="">Tên cơ sở</label>
             <input type="text" class="form-control" id="" placeholder="" name="name">
         </div>
         <div class="form-group">
-            <label for="">Ngày sinh</label>
-            <input type="date" class="form-control" id="" placeholder="" name="DoB">
+            <label for="">Ngày ĐKKD</label>
+            <input type="date" class="form-control" id="" placeholder="" name="date">
         </div>
         <div class="form-group">
-            <label for="">Giới Tính</label>
-            <select id="" name="sex" class="form-control">
-                <option value="Nam"> Nam</option>
-                <option value="Nữ"> Nữ</option>
-                <option value="Khác"> Khác</option>
-            </select>
+            <label for="">Mã số thuế</label>
+            <input type="tex" class="form-control" id="" placeholder="" name="tax_code">
         </div>
         <div class="form-group">
             <label for="">Số điện thoại</label>
@@ -38,10 +34,6 @@ if ($message) {
         <div class="form-group">
             <label for="">Email</label>
             <input type="text" class="form-control" id="" placeholder="" name="email">
-        </div>
-        <div class="form-group">
-            <label for="">CMND</label>
-            <input type="text" class="form-control" id="" placeholder="" name="cmnd">
         </div>
         <div class="form-group">
             <label for="">Mật Khẩu</label>
@@ -66,6 +58,14 @@ if ($message) {
                 <option value="{{$row->id}}">{{$row->name}} </option>
                 @endforeach
             </select>
+        </div>
+        <div class="form-group">
+            <label for="cars">Hình ảnh giấy phép kinh doanh</label>
+            <input class="form-control" type="file" name="file_images[]" multiple>
+        </div>
+        <div class="form-group">
+            <label for="cars">Hình ảnh cơ sở cứu hộ</label>
+            <input class="form-control" type="file" name="csch_images[]" multiple>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
