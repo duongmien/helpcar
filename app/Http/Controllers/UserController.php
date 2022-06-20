@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +28,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        $this->AuthLogin();
         $data_all_user = User::with('role', 'subdistrict')->get();
         $manager_user = view('admin.user.list')->with('data_all_user', $data_all_user);
         return view('adminlayout')->with('admin.user.list', $manager_user);
@@ -31,6 +41,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         $data_sub_dis = SubDistrict::orderBy('id', 'desc')->get();
         $data_role = Role::where('id', 1)->orWhere('id', 3)->orderBy('id', 'desc')->get();
         $manager_user = view('admin.user.add')->with('data_sub_dis', $data_sub_dis)->with('data_role', $data_role);
@@ -45,6 +56,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $user = new User();
         $user->name =  $request->name;
         $user->DoB =  $request->DoB;
@@ -52,7 +64,7 @@ class UserController extends Controller
         $user->phone =  $request->phone;
         $user->email =  $request->email;
         $user->CMND =  $request->cmnd;
-        $user->password = Hash::make($request->password);
+        $user->password = md5($request->password);
         $user->diachi = $request->address;
         $user->idPX = $request->idPX;
         $user->idrole = $request->idrole;
@@ -80,6 +92,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $data_sub_dis = SubDistrict::orderBy('id', 'desc')->get();
         $data_role = Role::where('id', 1)->orWhere('id', 3)->orderBy('id', 'desc')->get();
         $data_user = User::findOrFail($id);
@@ -96,6 +109,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $user = User::findOrFail($id);
         $user->name =  $request->name;
         $user->DoB =  $request->DoB;
@@ -103,9 +117,9 @@ class UserController extends Controller
         $user->phone =  $request->phone;
         $user->email =  $request->email;
         $user->CMND =  $request->cmnd;
-        $user->password = Hash::make($request->password);
+        $user->password = md5($request->password);
         $user->diachi = $request->address;
-        $user->idPX = $request->idPX; 
+        $user->idPX = $request->idPX;
         $user->idrole = $request->idrole;
         $user->save();
         $request->session()->put('message', 'Upadate successful');
@@ -120,6 +134,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $user = User::findOrFail($id);
         $user->delete();
         Session::put('message', 'Delete successful');

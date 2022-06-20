@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Session;
 
 class RoleController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +25,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $this->AuthLogin();
         $data_all_role = Role::all();
         $manager_role = view('admin.role.list')->with('data_all_role', $data_all_role);
         return view('adminlayout')->with('admin.role.list', $manager_role);
@@ -28,6 +38,7 @@ class RoleController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         return view('admin.role.add');
     }
 
@@ -39,6 +50,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $role = new Role();
         $role->name =  $request->name;
         $role->save();
@@ -55,6 +67,7 @@ class RoleController extends Controller
      */
     public function show($id)
     {
+        $this->AuthLogin();
         $data_detail = Role::findorFail($id);
         $manager_role = view('admin.role.detail')->with('data_detail', $data_detail);
         return view('adminlayout')->with('admin.role.detail', $manager_role);
@@ -68,6 +81,7 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $data_role = Role::findOrFail($id);
         $manager_role = view('admin.role.edit')->with('data_role', $data_role);
         return view('adminlayout')->with('admin.role.edit', $manager_role);
@@ -82,6 +96,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $role = Role::findOrFail($id);
         $role->name =  $request->name;
         $role->save();
@@ -97,6 +112,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $role = Role::findOrFail($id);
         $role->delete();
         Session::put('message', 'Delete successful');

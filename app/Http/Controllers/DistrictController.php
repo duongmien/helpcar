@@ -11,6 +11,15 @@ use Illuminate\Support\Facades\Session;
 
 class DistrictController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +27,7 @@ class DistrictController extends Controller
      */
     public function index()
     {
+        $this->AuthLogin();
         $data_all_dis = District::with('city')->get();
         $manager_dis = view('admin.district.list')->with('data_all_dis', $data_all_dis);
         return view('adminlayout')->with('admin.district.list', $manager_dis);
@@ -30,6 +40,7 @@ class DistrictController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         $data_city = CityModel::orderBy('id', 'desc')->get();
         $manager_city = view('admin.district.add')->with('data_city', $data_city);
         return view('adminlayout')->with('admin.district.add', $manager_city);
@@ -43,6 +54,7 @@ class DistrictController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $district = new District();
         $district->name =  $request->name;
         $district->city_id = $request->city_id;
@@ -60,6 +72,7 @@ class DistrictController extends Controller
      */
     public function show($id)
     {
+        $this->AuthLogin();
         $data_detail = District::findorFail($id);
         $manager_dis = view('admin.district.detail')->with('data_detail', $data_detail);
         return view('adminlayout')->with('admin.district.detail', $manager_dis);
@@ -73,6 +86,7 @@ class DistrictController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $data_city = CityModel::orderBy('id', 'desc')->get();
         $data_district = District::findOrFail($id);
         $manager_dis = view('admin.district.edit')->with('data_district', $data_district)->with('data_city', $data_city);
@@ -88,6 +102,7 @@ class DistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $district = District::findOrFail($id);
         $district->name =  $request->name;
         $district->city_id = $request->city_id;
@@ -104,6 +119,7 @@ class DistrictController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $district = District::findOrFail($id);
         $district->delete();
         Session::put('message', 'Delete successful');

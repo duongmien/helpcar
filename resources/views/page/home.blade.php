@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="{{asset('assets/home.css')}}">
   <title>Help Car!</title>
 </head>
+<?php
+
+use Illuminate\Support\Facades\Session;
+
+$message = Session::get('message');
+if ($message) {
+  echo '<script>alert("' . $message . '");</script> ';
+  Session::put('message', null);
+}
+?>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light heading-nav">
@@ -81,7 +91,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="imageDropdown">
                 <button class="dropdown-item" type="button">Thông tin</button>
-                <button class="dropdown-item" type="button">Đăng xuất</button>
+                <a href="{{URL::to('logout')}}" class="dropdown-item" type="button">Đăng xuất</a>
               </div>
             </div>
           </li>

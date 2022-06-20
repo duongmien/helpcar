@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="{{asset('assets/login.css')}}">
   <title>Help Car!</title>
 </head>
+<?php
+
+use Illuminate\Support\Facades\Session;
+
+$message = Session::get('message');
+if ($message) {
+  echo '<script>alert("' . $message . '");</script> ';
+  Session::put('message', null);
+}
+?>
 
 <body>
   <div class="container">
@@ -16,14 +26,15 @@
       <div class="col d-flex justify-content-center">
         <div class="wraprer">
           <h2 class="text-center text-orange font-weight-bold">ĐĂNG NHẬP TÀI KHOẢN</h2>
-          <form class="mt-5">
+          <form class="mt-5" action="{{URL::to('/check-login')}}" method="post">
+            @csrf
             <div class="form-group">
-              <label for="exampleInputEmail1">Tên đang nhập</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nhập tên đăng nhập của bạn.....">
+              <label for="exampleInputEmail1">Nhập Email</label>
+              <input type="email" class="form-control" name="email" placeholder="Nhập email đăng ký của bạn.....">
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1">Mật khẩu</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập mật khẩu .....">
+              <label for="exampleInputPassword1">Mật Khẩu</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Nhập mật khẩu .....">
             </div>
             <div class="d-flex justify-content-center action mt-5">
               <button type="submit" class="btn btn-primary mx-2 button-orange-reverse">Đăng nhập</button>

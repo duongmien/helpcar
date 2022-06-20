@@ -12,6 +12,15 @@ use Mockery\Matcher\Subset;
 
 class SubDistrictController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,6 +28,7 @@ class SubDistrictController extends Controller
      */
     public function index()
     {
+        $this->AuthLogin();
         $data_all_sub_dis = SubDistrict::with('district')->get();
         $manager_dis = view('admin.sub-district.list')->with('data_all_sub_dis', $data_all_sub_dis);
         return view('adminlayout')->with('admin.sub-district.list', $manager_dis);
@@ -31,6 +41,7 @@ class SubDistrictController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         $data_dis = District::orderBy('id', 'desc')->get();
         $manager_dis = view('admin.sub-district.add')->with('data_dis', $data_dis);
         return view('adminlayout')->with('admin.sub-district.add', $manager_dis);
@@ -44,6 +55,7 @@ class SubDistrictController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $sub_district = new SubDistrict();
         $sub_district->name =  $request->name;
         $sub_district->district_id = $request->district_id;
@@ -61,6 +73,7 @@ class SubDistrictController extends Controller
      */
     public function show($id)
     {
+        $this->AuthLogin();
         $data_detail = SubDistrict::findorFail($id);
         $manager_dis = view('admin.sub-district.detail')->with('data_detail', $data_detail);
         return view('adminlayout')->with('admin.sub-district.detail', $manager_dis);
@@ -74,6 +87,7 @@ class SubDistrictController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $data_dis = District::orderBy('id', 'desc')->get();
         $data_sub_district = SubDistrict::findOrFail($id);
         $manager_dis = view('admin.sub-district.edit')->with('data_sub_district', $data_sub_district)->with('data_dis',    $data_dis);
@@ -89,6 +103,7 @@ class SubDistrictController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $sub_district = SubDistrict::findOrFail($id);
         $sub_district->name =  $request->name;
         $sub_district->district_id = $request->district_id;
@@ -105,6 +120,7 @@ class SubDistrictController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $sub_district = SubDistrict::findOrFail($id);
         $sub_district->delete();
         Session::put('message', 'Delete successful');

@@ -15,6 +15,15 @@ use Illuminate\Support\Facades\Session;
 
 class ResFacilityController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,6 +31,7 @@ class ResFacilityController extends Controller
      */
     public function index()
     {
+        $this->AuthLogin();
         $data_all_csch = ResFacility::with('role', 'subdistrict')->get();
         $manager_csch = view('admin.csch.list')->with('data_all_csch', $data_all_csch);
         return view('adminlayout')->with('admin.csch.list', $manager_csch);
@@ -34,6 +44,7 @@ class ResFacilityController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         $data_sub_dis = SubDistrict::orderBy('id', 'desc')->get();
         $data_role = Role::where('id', 2)->orderBy('id', 'desc')->get();
         $manager_csch = view('admin.csch.add')->with('data_sub_dis', $data_sub_dis)->with('data_role', $data_role);
@@ -48,6 +59,7 @@ class ResFacilityController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $csch = new ResFacility();
         $csch->name =  $request->name;
         $csch->ngaydkkd =  $request->date;
@@ -102,6 +114,7 @@ class ResFacilityController extends Controller
      */
     public function show($id)
     {
+        $this->AuthLogin();
     }
 
     /**
@@ -112,6 +125,7 @@ class ResFacilityController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $data_sub_dis = SubDistrict::orderBy('id', 'desc')->get();
         $data_role = Role::where('id', 1)->orWhere('id', 3)->orderBy('id', 'desc')->get();
         $data_csch = ResFacility::findOrFail($id);
@@ -128,6 +142,7 @@ class ResFacilityController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $csch = ResFacility::findOrFail($id);
         $csch->name =  $request->name;
         $csch->DoB =  $request->DoB;
@@ -152,6 +167,7 @@ class ResFacilityController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $csch = ResFacility::findOrFail($id);
         $csch->delete();
         Session::put('message', 'Delete successful');

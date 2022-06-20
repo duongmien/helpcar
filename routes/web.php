@@ -22,7 +22,14 @@ Route::resource('sub-district', 'SubDistrictController');
 Route::resource('role', 'RoleController');
 //  User
 Route::resource('user', 'UserController');
-// Home
+// Home No Login
 Route::get('/', 'HomeController@index');
+// Home Login
+Route::get('/home', 'HomeController@home');
 //  User
 Route::resource('csch', 'ResFacilityController');
+// Login
+Route::get('/login', 'LoginController@index');
+Route::post('/check-login', 'LoginController@check_login');
+// Logout
+Route::get('/logout', 'LoginController@logout');

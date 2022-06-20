@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Session;
 
 class CityController extends Controller
 {
+    public function AuthLogin()
+    {
+        $admin_id = Session::get('idrole');
+        if ($admin_id && $admin_id == 3) {
+            return Redirect::to('city');
+        } else {
+            return Redirect::to('login')->send();
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +25,7 @@ class CityController extends Controller
      */
     public function index()
     {
+        $this->AuthLogin();
         $data_all_city = CityModel::all();
         $manager_city = view('admin.city.list')->with('data_all_city', $data_all_city);
         return view('adminlayout')->with('admin.city.list', $manager_city);
@@ -28,6 +38,7 @@ class CityController extends Controller
      */
     public function create()
     {
+        $this->AuthLogin();
         return view('admin.city.add');
     }
 
@@ -39,6 +50,7 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
+        $this->AuthLogin();
         $city = new CityModel();
         $city->name =  $request->name;
         $city->save();
@@ -55,6 +67,7 @@ class CityController extends Controller
      */
     public function show($id)
     {
+        $this->AuthLogin();
         $data_detail = CityModel::findorFail($id);
         $manager_city = view('admin.city.detail')->with('data_detail', $data_detail);
         return view('adminlayout')->with('admin.city.detail', $manager_city);
@@ -68,6 +81,7 @@ class CityController extends Controller
      */
     public function edit($id)
     {
+        $this->AuthLogin();
         $data_city = CityModel::findOrFail($id);
         $manager_city = view('admin.city.edit')->with('data_city', $data_city);
         return view('adminlayout')->with('admin.city.edit', $manager_city);
@@ -82,6 +96,7 @@ class CityController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->AuthLogin();
         $city = CityModel::findOrFail($id);
         $city->name =  $request->name;
         $city->save();
@@ -97,6 +112,7 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
+        $this->AuthLogin();
         $city = CityModel::findOrFail($id);
         $city->delete();
         Session::put('message', 'Delete successful');
