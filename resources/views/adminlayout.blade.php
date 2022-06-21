@@ -58,7 +58,7 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{('/dashboard')}}">
-                    <i class="fas fa-fw fa-user"></i>
+                    <i class="fas fa-fw fa-bell"></i>
                     <span>Dashboard</span></a>
             </li>
             <li class="nav-item">
@@ -79,7 +79,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{('/itemcate')}}">
-                    <i class="fas fa-fw fa-gavel"></i>
+                    <i class="fas fa-fw fa-flag"></i>
                     <span>Quản lý Dịch Vụ</span></a>
             </li>
             <li class="nav-item">

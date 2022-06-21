@@ -115,6 +115,9 @@ class ResFacilityController extends Controller
     public function show($id)
     {
         $this->AuthLogin();
+        $data_detail = ResFacility::findorFail($id);
+        $manager_csch = view('admin.csch.detail')->with('data_detail',   $data_detail);
+        return view('adminlayout')->with('admin.csch.detail', $manager_csch);
     }
 
     /**

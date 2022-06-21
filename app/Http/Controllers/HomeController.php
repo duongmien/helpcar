@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function AuthLogin()
     {
         $admin_id = Session::get('idrole');
-        if ($admin_id && $admin_id == 1) {
+        if ($admin_id & $admin_id == 1) {
             return Redirect::to('home');
         } else {
             return Redirect::to('login')->send();

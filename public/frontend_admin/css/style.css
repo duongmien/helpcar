@@ -666,6 +666,7 @@ ul.top-menu>li>a:hover,ul.top-menu>li>a:focus {
 }
 /*--market--*/
 .market-update-block {
+    display: flex;
     padding: 2em 2em;
     background: #999;
 }

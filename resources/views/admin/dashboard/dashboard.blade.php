@@ -1,13 +1,14 @@
 @extends('adminlayout')
 @section('admin_content')
-<link href="{{asset('frontend_admin/css/./style.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('frontend_admin/css/style.css')}}" rel="stylesheet" type="text/css">
+
 <div class="market-updates">
     <h1>THỐNG KÊ</h1>
     <div class="col-md-3 market-update-gd">
         <a href="{{URL::to('/all-product')}}">
             <div class="market-update-block clr-block-2">
                 <div class="col-md-4 market-update-right">
-                    <i class="fa fa-legal"> </i>
+                    <i class="fa fa-map"> </i>
                 </div>
                 <div class="col-md-8 market-update-left">
                     <h4>Danh Mục</h4>
@@ -21,7 +22,7 @@
         <a href="{{URL::to('/all-product')}}">
             <div class="market-update-block clr-block-1">
                 <div class="col-md-4 market-update-right">
-                    <i class="fa fa-usd"></i>
+                    <i class="fa fa-maps"></i>
                 </div>
                 <div class="col-md-8 market-update-left">
                     <h4>Danh Mục Dịch Vụ</h4>
