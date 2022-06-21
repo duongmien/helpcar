@@ -37,3 +37,5 @@ Route::get('/login', 'LoginController@index');
 Route::post('/check-login', 'LoginController@check_login');
 // Logout
 Route::get('/logout', 'LoginController@logout');
+// Dashboard
+Route::get('/dashboard', 'DashboardController@index');

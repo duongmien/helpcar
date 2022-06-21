@@ -60,7 +60,17 @@ class ItemCateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->AuthLogin();
+        $item = new ItemCate();
+        $item->name =  $request->name;
+        $item->mota =  $request->mota;
+        $item->gia =  $request->gia;
+        $item->idcsch =  $request->idcsch;
+        $item->idDM =  $request->idDM;
+        $item->save();
+        // Thông qua 1 thể hiện của Request
+        $request->session()->put('message', 'Add successful');
+        return Redirect::to('/itemcate');
     }
 
     /**

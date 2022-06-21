@@ -57,10 +57,16 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+                <a class="nav-link" href="{{('/dashboard')}}">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Dashboard</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{('/user')}}">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Quản lý Người Dùng</span></a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="{{('/csch')}}">
                     <i class="fas fa-fw fa-car"></i>

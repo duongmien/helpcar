@@ -10,7 +10,7 @@ class ItemCate extends Model
     protected $fillable = ['name', 'mota', 'gia', 'idcsch', 'idDM'];
     protected $primaryKey = 'id';
     protected $table = 'tbldichvu';
-    public function Category()
+    public function Categories()
     {
         return $this->belongsTo('App\Categories', 'idDM', 'id');
     }
